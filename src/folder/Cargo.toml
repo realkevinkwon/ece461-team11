@@ -1,0 +1,15 @@
+[package]
+name = "folder"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "rustlib"
+crate-type = ["cdylib"]
+
+[dependencies.cpython]
+version = "0.7"
+features = ["extension-module"]
+
+[dependencies]
+regex = "1.7.1"

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+if [ $# != 1 ]; then
+    echo "ERROR: Incorrect usage"
+    echo "USAGE:"
+    echo -e "\t./run build"
+    echo -e "\t./run install"
+    echo -e "\t./run test"
+    echo -e "\t./run <URL_FILE>"
+elif [ $1 == "help" -o $1 == "--help" -o $1 == "-h" ]; then
+    echo "USAGE:"
+    echo -e "\t./run build"
+    echo -e "\t./run install"
+    echo -e "\t./run test"
+    echo -e "\t./run <URL_FILE>"
+elif [ $1 == "install" ]; then
+    echo "install"
+elif [ $1 == "build" ]; then
+    cargo build --release
+elif [ $1 == "test" ]; then
+    cargo build
+else
+    if [ ! -f "target/release/ECE461_Team11" ]; then
+        cargo build --release
+    fi
+    
+    ./target/release/ECE461_Team11 $1
+fi
