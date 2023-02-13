@@ -70,19 +70,22 @@ elif [ $1 == "build" ]; then
 elif [ $1 == "test" ]; then
     if [ $LOG_LEVEL == 2 ]; then
         cargo build >> $LOG_FILE
-        make test-py-valid >> $LOG_FILE
+        temp=$(make test-py-valid)
+        echo $temp >> $LOG_FILL
     elif [ $LOG_LEVEL == 1 ]; then
         cargo build 2> /dev/null
-        make test-py-valid 2> /dev/null
+        temp=$(make test-py-valid)
+        echo $temp 2> /dev/null
     else
         cargo build &> /dev/null
-        make test-py-valid &> /dev/null
+        temp=$(make test-py-valid &> /dev/null)
+        echo $temp &> /dev/null
     fi
 
-    passed=$(grep -c "PASSED" ${LOG_FILE})
-    failed=$(grep -c "FAILED" ${LOG_FILE})
+    passed=$(grep -c "PASSED" ${temp})
+    failed=$(grep -c "FAILED" ${temp})
     total=$((${passed}+${failed}))
-    cov_line=$(grep "TOTAL" ${LOG_FILE})
+    cov_line=$(grep "TOTAL" ${temp})
     coverage=${cov_line:62:2}
 
     # something for rust
