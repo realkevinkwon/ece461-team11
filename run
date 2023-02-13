@@ -41,27 +41,27 @@ elif [ $1 == "help" -o $1 == "--help" -o $1 == "-h" ]; then
 elif [ $1 == "install" ]; then
     if [ $LOG_LEVEL == 2 ]; then
         if [ -z ${VIRTUAL_ENV} ]; then
-            temp=$(pip install --user --no-warn-script-location -r requirements.txt)
-            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+            line=$(pip install --user --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $line) dependencies installed..."
         else
-            temp=$(pip install --no-warn-script-location -r requirements.txt)
-            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+            line=$(pip install --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $line) dependencies installed..."
         fi
     elif [ $LOG_LEVEL == 1 ]; then
         if [ -z ${VIRTUAL_ENV} ]; then
-            temp=$(pip install --user --no-warn-script-location -r requirements.txt)
-            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+            line=$(pip install --user --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $line) dependencies installed..."
         else
-            temp=$(pip install --no-warn-script-location -r requirements.txt)
-            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+            line=$(pip install --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $line) dependencies installed..."
         fi
     else
         if [ -z ${VIRTUAL_ENV} ]; then
-            temp=$(pip install --user --no-warn-script-location -r requirements.txt)
-            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+            line=$(pip install --user --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $line) dependencies installed..."
         else
-            temp=$(pip install --no-warn-script-location -r requirements.txt)
-            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+            line=$(pip install --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $line) dependencies installed..."
         fi
     fi
 elif [ $1 == "build" ]; then
@@ -70,22 +70,22 @@ elif [ $1 == "build" ]; then
 elif [ $1 == "test" ]; then
     if [ $LOG_LEVEL == 2 ]; then
         cargo build >> $LOG_FILE
-        temp=$(make test-py-valid)
-        echo $temp >> $LOG_FILL
+        line=$(make test-py-valid)
+        echo $line >> $LOG_FILL
     elif [ $LOG_LEVEL == 1 ]; then
         cargo build 2> /dev/null
-        temp=$(make test-py-valid)
-        echo $temp 2> /dev/null
+        line=$(make test-py-valid)
+        echo $line 2> /dev/null
     else
         cargo build &> /dev/null
-        temp=$(make test-py-valid &> /dev/null)
-        echo $temp &> /dev/null
+        line=$(make test-py-valid &> /dev/null)
+        echo $line &> /dev/null
     fi
 
-    passed=$(grep -c "PASSED" ${temp})
-    failed=$(grep -c "FAILED" ${temp})
+    passed=$(grep -c "PASSED" ${line})
+    failed=$(grep -c "FAILED" ${line})
     total=$((${passed}+${failed}))
-    cov_line=$(grep "TOTAL" ${temp})
+    cov_line=$(grep "TOTAL" ${line})
     coverage=${cov_line:62:2}
 
     # something for rust
