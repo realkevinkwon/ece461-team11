@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+# make sure these environment variables are set
+if [ -z ${GITHUB_TOKEN} ]; then
+    echo "ERROR: Missing environment variable \$GITHUB_TOKEN"
+    exit 1
+elif [ -z ${LOG_FILE} ]; then
+    echo "ERROR: Missing environment variable \$LOG_FILE"
+    exit 1
+elif [ -z ${LOG_LEVEL} ]; then
+    export LOG_LEVEL=0 &> /dev/null
+fi
+
+# make sure these files exist
+if [ ! -f "requirements.txt" ]; then
+    echo "ERROR: Missing requirements.txt"
+    exit 1
+elif [ ! -f "Cargo.toml" ]; then
+    echo "ERROR: Missing Cargo.toml"
+    exit 1
+elif [ ! -f $LOG_FILE ]; then
+    touch $LOG_FILE &> /dev/null
+fi
+
+# handle command line arguments
+if [ $# != 1 ]; then
+    echo "ERROR: Incorrect usage"
+    echo "USAGE:"
+    echo -e "\t./run build"
+    echo -e "\t./run install"
+    echo -e "\t./run test"
+    echo -e "\t./run <URL_FILE>"
+    exit 1
+elif [ $1 == "help" -o $1 == "--help" -o $1 == "-h" ]; then
+    echo "USAGE:"
+    echo -e "\t./run build"
+    echo -e "\t./run install"
+    echo -e "\t./run test"
+    echo -e "\t./run <URL_FILE>"
+    exit 1
+elif [ $1 == "install" ]; then
+    if [ $LOG_LEVEL == 2 ]; then
+        if [ -z ${VIRTUAL_ENV} ]; then
+            temp=$(pip install --user --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+        else
+            temp=$(pip install --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+        fi
+    elif [ $LOG_LEVEL == 1 ]; then
+        if [ -z ${VIRTUAL_ENV} ]; then
+            temp=$(pip install --user --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+        else
+            temp=$(pip install --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+        fi
+    else
+        if [ -z ${VIRTUAL_ENV} ]; then
+            temp=$(pip install --user --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+        else
+            temp=$(pip install --no-warn-script-location -r requirements.txt)
+            echo "$(grep -c 'Collecting' $temp) dependencies installed..."
+        fi
+    fi
+elif [ $1 == "build" ]; then
+    cargo build --release >> $LOG_FILE
+    exit 0
+elif [ $1 == "test" ]; then
+    if [ $LOG_LEVEL == 2 ]; then
+        cargo build >> $LOG_FILE
+        make test-py-valid >> $LOG_FILE
+    elif [ $LOG_LEVEL == 1 ]; then
+        cargo build 2> /dev/null
+        make test-py-valid 2> /dev/null
+    else
+        cargo build &> /dev/null
+        make test-py-valid &> /dev/null
+    fi
+
+    passed=$(grep -c "PASSED" ${LOG_FILE})
+    failed=$(grep -c "FAILED" ${LOG_FILE})
+    total=$((${passed}+${failed}))
+    cov_line=$(grep "TOTAL" ${LOG_FILE})
+    coverage=${cov_line:62:2}
+
+    # something for rust
+    echo "Total: ${total}"
+    echo "Passed: ${passed}"
+    echo "Coverage: ${coverage}%"
+    echo "${passed}/${total} test cases passed. ${coverage}% line coverage achieved."
+    exit 0
+else
+    if [ ! -f "target/release/ECE461_Team11" ]; then
+        cargo build --release >> $LOG_FILE
+    fi
+    if [ $LOG_LEVEL == 2 ]; then
+        ./target/release/ECE461_Team11 $1 >> $LOG_FILE
+    elif [ $LOG_LEVEL == 1 ]; then
+        ./target/release/ECE461_Team11 $1 2> /dev/null
+    else
+        ./target/release/ECE461_Team11 $1 &> /dev/null
+    fi
+    exit 0
+fi

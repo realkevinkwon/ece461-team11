@@ -1,0 +1,18 @@
+{"metric":"BUS_FACTOR_SCORE","api":"rest","filepath":"src/url/bus_factor.py","line":6}
+{"metric":"RAMP_UP_SCORE","api":"rest","filepath":"src/url/tests/ramp_up.py","line":6}
+{"metric":"RAMP_UP_SCORE","api":"rest","filepath":"src/url/tests/ramp_up.py","line":7}
+{"metric":"RAMP_UP_SCORE","api":"rest","filepath":"src/url/tests/ramp_up.py","line":15}
+{"metric":"CORRECTNESS_SCORE","api":"rest","filepath":"src/url/correctness.py","line":10}
+{"metric":"CORRECTNESS_SCORE","api":"rest","filepath":"src/url/correctness.py","line":29}
+{"metric":"CORRECTNESS_SCORE","api":"rest","filepath":"src/url/correctness.py","line":39}
+{"metric":"CORRECTNESS_SCORE","api":"rest","filepath":"src/url/correctness.py","line":79}
+{"metric":"CORRECTNESS_SCORE","api":"rest","filepath":"src/url/correctness.py","line":80}
+{"metric":"CORRECTNESS_SCORE","api":"rest","filepath":"src/url/correctness.py","line":96}
+{"metric":"CORRECTNESS_SCORE","api":"rest","filepath":"src/url/correctness.py","line":97}
+{"metric":"LICENSE_SCORE","api":"rest","filepath":"src/url/license.py","line":9}
+{"metric":"LICENSE_SCORE","api":"rest","filepath":"src/url/license.py","line":30}
+{"metric":"LICENSE_SCORE","api":"rest","filepath":"src/url/license.py","line":43}
+{"metric":"LICENSE_SCORE","api":"rest","filepath":"src/url/license.py","line":60}
+{"metric":"RESPONSIVE_MAINTAINER_SCORE", "api":"rest", "filepath":"src/url/responsive_maintainer.py", "line":6}
+{"metric":"RESPONSIVE_MAINTAINER_SCORE", "api":"rest", "filepath":"src/url/responsive_maintainer.py", "line":24}
+{"metric":"RESPONSIVE_MAINTAINER_SCORE", "api":"rest", "filepath":"src/url/responsive_maintainer.py", "line":41}

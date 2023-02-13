@@ -1,0 +1,105 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 0.03s
+python3 -m pytest -s -v --cov=src/url/ -m "valid"
+============================================================================================= test session starts =============================================================================================
+platform darwin -- Python 3.9.6, pytest-7.2.1, pluggy-1.0.0 -- /Users/kevinkwon/ECE461_Team11/venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/kevinkwon/ECE461_Team11, configfile: pytest.ini
+plugins: cov-4.0.0
+collected 21 items / 5 deselected / 16 selected                                                                                                                                                               
+
+src/url/tests/test_bus_factor.py::test_get_bus_factor_score PASSED
+src/url/tests/test_correctness.py::test_get_doc PASSED
+src/url/tests/test_correctness.py::test_get_downloads PASSED
+src/url/tests/test_correctness.py::test_get_stars PASSED
+src/url/tests/test_correctness.py::test_get_issues PASSED
+src/url/tests/test_correctness.py::test_get_pr PASSED
+src/url/tests/test_correctness.py::test_get_tags PASSED
+src/url/tests/test_license.py::test_get_license_list PASSED
+src/url/tests/test_license.py::test_license_score PASSED
+src/url/tests/test_license.py::test_github_license PASSED
+src/url/tests/test_license.py::test_search_readme PASSED
+src/url/tests/test_ramp_up.py::test_get_ramp_up_score_valid 
+
+testing get_ramp_up_score() with valid test cases
+test case: (https://www.npmjs.com/package/even, jonschlinkert, even)
+test case: (https://github.com/jonschlinkert/even, jonschlinkert, even)
+test case: (https://github.com/SonarSource/chocolatey-packages, SonarSource, chocolatey-packages)
+test case: (https://github.com/PSOPT/psopt, PSOPT, psopt)
+test case: (https://github.com/nullivex/nodist, nullivex, nodist)
+test case: (https://www.npmjs.com/package/express, expressjs, express)
+test case: (https://www.npmjs.com/package/browserify, browserify, browserify)
+test case: (https://github.com/cloudinary/cloudinary_npm , cloudinary, cloudinary_npm)
+test case: (https://github.com/lodash/lodash, lodash, lodash)
+test case: (https://github.com/PC192/ChubbyChecker, PC192, ChubbyChecker)
+test case: (https://github.com/apache/airflow, apache, airflow)
+PASSED
+src/url/tests/test_responsive_maintainer.py::test_get_weekly_subscore_valid 
+
+testing get_weekly_subscore() with valid test cases
+test case: (https://www.npmjs.com/package/even, jonschlinkert, even)
+test case: (https://github.com/jonschlinkert/even, jonschlinkert, even)
+test case: (https://github.com/SonarSource/chocolatey-packages, SonarSource, chocolatey-packages)
+test case: (https://github.com/PSOPT/psopt, PSOPT, psopt)
+test case: (https://github.com/nullivex/nodist, nullivex, nodist)
+test case: (https://www.npmjs.com/package/express, expressjs, express)
+test case: (https://www.npmjs.com/package/browserify, browserify, browserify)
+test case: (https://github.com/cloudinary/cloudinary_npm , cloudinary, cloudinary_npm)
+test case: (https://github.com/lodash/lodash, lodash, lodash)
+test case: (https://github.com/PC192/ChubbyChecker, PC192, ChubbyChecker)
+test case: (https://github.com/apache/airflow, apache, airflow)
+PASSED
+src/url/tests/test_responsive_maintainer.py::test_get_yearly_subscore_valid 
+
+testing get_yearly_subscore() with valid test cases
+test case: (https://www.npmjs.com/package/even, jonschlinkert, even)
+test case: (https://github.com/jonschlinkert/even, jonschlinkert, even)
+test case: (https://github.com/SonarSource/chocolatey-packages, SonarSource, chocolatey-packages)
+test case: (https://github.com/PSOPT/psopt, PSOPT, psopt)
+test case: (https://github.com/nullivex/nodist, nullivex, nodist)
+test case: (https://www.npmjs.com/package/express, expressjs, express)
+test case: (https://www.npmjs.com/package/browserify, browserify, browserify)
+test case: (https://github.com/cloudinary/cloudinary_npm , cloudinary, cloudinary_npm)
+test case: (https://github.com/lodash/lodash, lodash, lodash)
+test case: (https://github.com/PC192/ChubbyChecker, PC192, ChubbyChecker)
+test case: (https://github.com/apache/airflow, apache, airflow)
+PASSED
+src/url/tests/test_responsive_maintainer.py::test_get_rm_score_valid 
+
+testing get_rm_score() with valid test cases
+test case: (https://www.npmjs.com/package/even, jonschlinkert, even)
+test case: (https://github.com/jonschlinkert/even, jonschlinkert, even)
+test case: (https://github.com/SonarSource/chocolatey-packages, SonarSource, chocolatey-packages)
+test case: (https://github.com/PSOPT/psopt, PSOPT, psopt)
+test case: (https://github.com/nullivex/nodist, nullivex, nodist)
+test case: (https://www.npmjs.com/package/express, expressjs, express)
+test case: (https://www.npmjs.com/package/browserify, browserify, browserify)
+test case: (https://github.com/cloudinary/cloudinary_npm , cloudinary, cloudinary_npm)
+test case: (https://github.com/lodash/lodash, lodash, lodash)
+test case: (https://github.com/PC192/ChubbyChecker, PC192, ChubbyChecker)
+test case: (https://github.com/apache/airflow, apache, airflow)
+PASSED
+src/url/tests/test_url.py::test_get_url_valid even
+express
+browserify
+PASSED
+
+---------- coverage: platform darwin, python 3.9.6-final-0 -----------
+Name                                          Stmts   Miss  Cover
+-----------------------------------------------------------------
+src/url/__init__.py                               0      0   100%
+src/url/bus_factor.py                            18      2    89%
+src/url/correctness.py                           83      6    93%
+src/url/license.py                               67      9    87%
+src/url/ramp_up.py                               20      1    95%
+src/url/responsive_maintainer.py                 37      2    95%
+src/url/tests/__init__.py                         0      0   100%
+src/url/tests/conftest.py                         5      0   100%
+src/url/tests/test_bus_factor.py                  9      0   100%
+src/url/tests/test_correctness.py                57      0   100%
+src/url/tests/test_license.py                    50      0   100%
+src/url/tests/test_ramp_up.py                    22      6    73%
+src/url/tests/test_responsive_maintainer.py      72     25    65%
+src/url/tests/test_url.py                        16      3    81%
+src/url/url.py                                   17      2    88%
+-----------------------------------------------------------------
+TOTAL                                           473     56    88%
