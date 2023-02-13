@@ -1,0 +1,26 @@
+# Python
+*.pyc
+__pycache__
+.pytest_cache/
+.coverage
+venv/
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+URL_Fields/
+
+# Testing
+sample-files/
+
+# GitHub
+.git/
+Repo-Analysis/
+
+# Output
+*.log
+
+# Misc.
+.vscode/
